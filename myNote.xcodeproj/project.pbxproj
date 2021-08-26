@@ -13,7 +13,7 @@
 		45D4323626D7B24100B25A0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D4323426D7B24100B25A0E /* Main.storyboard */; };
 		45D4323926D7B24200B25A0E /* myNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45D4323726D7B24100B25A0E /* myNote.xcdatamodeld */; };
 		45D4323B26D7B24A00B25A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D4323A26D7B24A00B25A0E /* Assets.xcassets */; };
-		45D4323E26D7B24A00B25A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D4323C26D7B24A00B25A0E /* LaunchScreen.storyboard */; };
+		45D4324926D7B3F900B25A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D4324826D7B3F900B25A0E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +24,8 @@
 		45D4323526D7B24100B25A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45D4323826D7B24100B25A0E /* myNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myNote.xcdatamodel; sourceTree = "<group>"; };
 		45D4323A26D7B24A00B25A0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		45D4323D26D7B24A00B25A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45D4323F26D7B24B00B25A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45D4324826D7B3F900B25A0E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +64,7 @@
 				45D4324626D7B37500B25A0E /* View */,
 				45D4324726D7B38100B25A0E /* Controller */,
 				45D4323A26D7B24A00B25A0E /* Assets.xcassets */,
-				45D4323C26D7B24A00B25A0E /* LaunchScreen.storyboard */,
+				45D4324826D7B3F900B25A0E /* LaunchScreen.storyboard */,
 				45D4323F26D7B24B00B25A0E /* Info.plist */,
 			);
 			path = myNote;
@@ -151,7 +151,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45D4323E26D7B24A00B25A0E /* LaunchScreen.storyboard in Resources */,
+				45D4324926D7B3F900B25A0E /* LaunchScreen.storyboard in Resources */,
 				45D4323B26D7B24A00B25A0E /* Assets.xcassets in Resources */,
 				45D4323626D7B24100B25A0E /* Main.storyboard in Resources */,
 			);
@@ -180,14 +180,6 @@
 				45D4323526D7B24100B25A0E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		45D4323C26D7B24A00B25A0E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				45D4323D26D7B24A00B25A0E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
