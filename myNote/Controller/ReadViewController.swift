@@ -16,14 +16,14 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     
     var cellTitle : String?
     var cellBody : String?
+    
     var complitionHandlerTitle : ((String?) -> Void)?
     var complitionHandlerNote : ((String?) -> Void)?
     
-    
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var noteTextField: UITextView!
     @IBOutlet weak var titleTextField: UITextField!
-    
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +39,6 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         navigationController?.isNavigationBarHidden = false
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,10 +53,14 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
     }
     
-    
     //MARK: - Title Change
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        doneButton.isHidden = false
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
+        doneButton.isHidden = true
         
         if titleTextField.text != cellTitle {
             backButton.setTitle("SAVE", for: .normal)
@@ -72,21 +74,23 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         return updatedText.count <= 30
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
     
     //MARK: - Note Change
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        doneButton.isHidden = false
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
+        doneButton.isHidden = true
+        
         if noteTextField.text != cellBody {
             backButton.setTitle("SAVE", for: .normal)
         }
     }
     
     
-    //MARK: - Button Manipulation
+    //MARK: - Buttons Manipulation
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         
@@ -135,6 +139,12 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             self.navigationController?.popViewController(animated: true)
         }
     }
+   
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        noteTextField.resignFirstResponder()
+        titleTextField.resignFirstResponder()
+    }
+    
     
     //MARK: - Note Save
     

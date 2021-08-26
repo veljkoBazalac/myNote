@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uu8-xd-7c1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kdD-wA-ND3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kdD-wA-ND3">
                                 <rect key="frame" x="0.0" y="88" width="414" height="709"/>
                                 <color key="backgroundColor" name="Background Colors"/>
                                 <color key="tintColor" name="Letters Colors"/>
@@ -59,6 +60,7 @@
                         <color key="backgroundColor" name="Background Colors"/>
                         <constraints>
                             <constraint firstItem="kdD-wA-ND3" firstAttribute="trailing" secondItem="hfr-B2-v4E" secondAttribute="trailing" id="0pW-Eu-AAb"/>
+                            <constraint firstItem="Ctl-0I-3M4" firstAttribute="top" secondItem="kdD-wA-ND3" secondAttribute="bottom" constant="10" id="Arb-om-Zn7"/>
                             <constraint firstItem="kdD-wA-ND3" firstAttribute="leading" secondItem="hfr-B2-v4E" secondAttribute="leading" id="ECc-6C-hlW"/>
                             <constraint firstItem="hfr-B2-v4E" firstAttribute="bottom" secondItem="Ctl-0I-3M4" secondAttribute="bottom" constant="5" id="GZN-XT-ACo"/>
                             <constraint firstItem="kdD-wA-ND3" firstAttribute="top" secondItem="hfr-B2-v4E" secondAttribute="top" id="jC2-vC-JBs"/>
@@ -117,7 +119,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="onDrag" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="ClD-fs-kcN" userLabel="Note Text">
-                                <rect key="frame" x="10" y="162" width="394" height="640"/>
+                                <rect key="frame" x="10" y="192" width="394" height="610"/>
                                 <color key="backgroundColor" name="Background Colors"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" name="Letters Colors"/>
@@ -139,12 +141,29 @@
                                     <action selector="backButtonPressed:" destination="aaw-kk-oUC" eventType="touchUpInside" id="0Qp-K6-Zgr"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yrq-fh-6WV">
+                                <rect key="frame" x="344" y="152" width="50" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="T9c-Uz-nJn"/>
+                                    <constraint firstAttribute="height" constant="30" id="VhL-7k-r9x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="14"/>
+                                <color key="tintColor" name="Letters Colors"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="0iW-uk-JPb" eventType="touchUpInside" id="SvR-ZI-ePV"/>
+                                    <action selector="doneButtonPressed:" destination="aaw-kk-oUC" eventType="touchUpInside" id="c5t-7e-wT6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vhM-KJ-I6L"/>
                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="ClD-fs-kcN" firstAttribute="top" secondItem="Yrq-fh-6WV" secondAttribute="bottom" constant="10" id="Lx9-OO-E7w"/>
                             <constraint firstItem="vhM-KJ-I6L" firstAttribute="trailing" secondItem="ClD-fs-kcN" secondAttribute="trailing" constant="10" id="OZs-04-Yvn"/>
-                            <constraint firstItem="ClD-fs-kcN" firstAttribute="top" secondItem="yAr-Ln-Sg2" secondAttribute="bottom" constant="20" id="RRL-xG-CPd"/>
+                            <constraint firstItem="ClD-fs-kcN" firstAttribute="top" secondItem="yAr-Ln-Sg2" secondAttribute="bottom" constant="50" id="RRL-xG-CPd"/>
+                            <constraint firstItem="vhM-KJ-I6L" firstAttribute="trailing" secondItem="Yrq-fh-6WV" secondAttribute="trailing" constant="20" id="Rci-M9-EuT"/>
                             <constraint firstItem="Zsr-4c-k0Z" firstAttribute="top" secondItem="ClD-fs-kcN" secondAttribute="bottom" constant="10" id="U5e-jM-Qaw"/>
                             <constraint firstItem="ClD-fs-kcN" firstAttribute="leading" secondItem="vhM-KJ-I6L" secondAttribute="leading" constant="10" id="WWk-vA-Dr3"/>
                             <constraint firstItem="Zsr-4c-k0Z" firstAttribute="centerX" secondItem="LMT-cS-Cv3" secondAttribute="centerX" id="Ycv-fX-euH"/>
@@ -152,11 +171,13 @@
                             <constraint firstItem="yAr-Ln-Sg2" firstAttribute="top" secondItem="vhM-KJ-I6L" secondAttribute="top" constant="20" id="lav-w8-nz5"/>
                             <constraint firstItem="Zsr-4c-k0Z" firstAttribute="bottom" secondItem="vhM-KJ-I6L" secondAttribute="bottom" constant="-10" id="t1g-0d-5vK"/>
                             <constraint firstItem="yAr-Ln-Sg2" firstAttribute="leading" secondItem="LMT-cS-Cv3" secondAttribute="leading" constant="10" id="uTb-uW-sba"/>
+                            <constraint firstItem="Yrq-fh-6WV" firstAttribute="top" secondItem="yAr-Ln-Sg2" secondAttribute="bottom" constant="10" id="wSv-L8-4nN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rjb-K7-rCn"/>
                     <connections>
                         <outlet property="backButton" destination="Zsr-4c-k0Z" id="TsE-xA-OMH"/>
+                        <outlet property="doneButton" destination="Yrq-fh-6WV" id="rhS-Yd-xU6"/>
                         <outlet property="noteTextField" destination="ClD-fs-kcN" id="cpQ-iv-2oX"/>
                         <outlet property="titleTextField" destination="7tb-Aw-OZj" id="Alo-sj-tWv"/>
                     </connections>
@@ -222,6 +243,20 @@
                                 <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fo-Zz-SLa">
+                                <rect key="frame" x="344" y="188" width="50" height="30"/>
+                                <color key="backgroundColor" name="Background Colors"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Cmk-1e-I4E"/>
+                                    <constraint firstAttribute="height" constant="30" id="k65-pQ-f18"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Verdana-BoldItalic" family="Verdana" pointSize="14"/>
+                                <color key="tintColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="0iW-uk-JPb" eventType="touchUpInside" id="wt5-Uk-OD8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eRk-bl-Wga"/>
                         <color key="backgroundColor" name="Background Colors"/>
@@ -233,10 +268,12 @@
                             <constraint firstItem="eRk-bl-Wga" firstAttribute="trailing" secondItem="lYE-dM-ptK" secondAttribute="trailing" constant="10" id="HTN-fU-g50"/>
                             <constraint firstItem="yLi-SO-9fO" firstAttribute="leading" secondItem="eRk-bl-Wga" secondAttribute="leading" constant="10" id="Kps-YI-IK9"/>
                             <constraint firstItem="gI7-my-qWU" firstAttribute="bottom" secondItem="eRk-bl-Wga" secondAttribute="bottom" constant="-10" id="Lwf-Es-9LX"/>
+                            <constraint firstItem="eRk-bl-Wga" firstAttribute="trailing" secondItem="0fo-Zz-SLa" secondAttribute="trailing" constant="20" id="MVV-Ef-73w"/>
                             <constraint firstItem="lYE-dM-ptK" firstAttribute="centerX" secondItem="HLm-90-C8s" secondAttribute="centerX" id="Np7-Ve-ZUP"/>
                             <constraint firstItem="gI7-my-qWU" firstAttribute="top" secondItem="yLi-SO-9fO" secondAttribute="bottom" constant="20" id="Opn-xB-7TQ"/>
                             <constraint firstItem="rGN-KQ-HeQ" firstAttribute="centerX" secondItem="HLm-90-C8s" secondAttribute="centerX" id="UJ2-ZB-dSP"/>
                             <constraint firstItem="yLi-SO-9fO" firstAttribute="top" secondItem="rGN-KQ-HeQ" secondAttribute="bottom" constant="20" id="fXY-Jk-H68"/>
+                            <constraint firstItem="0fo-Zz-SLa" firstAttribute="top" secondItem="lYE-dM-ptK" secondAttribute="bottom" constant="15" id="k73-WE-Qpj"/>
                             <constraint firstItem="esV-fV-lMc" firstAttribute="centerX" secondItem="HLm-90-C8s" secondAttribute="centerX" id="pOu-u9-BOX"/>
                             <constraint firstItem="gI7-my-qWU" firstAttribute="centerX" secondItem="HLm-90-C8s" secondAttribute="centerX" id="rWg-UL-C8p"/>
                             <constraint firstItem="lYE-dM-ptK" firstAttribute="leading" secondItem="eRk-bl-Wga" secondAttribute="leading" constant="10" id="xHE-8q-fgA"/>
@@ -247,6 +284,7 @@
                     <navigationItem key="navigationItem" title="myNote" id="mbq-HG-FE1"/>
                     <connections>
                         <outlet property="backButton" destination="gI7-my-qWU" id="dHz-z4-fRe"/>
+                        <outlet property="doneButton" destination="0fo-Zz-SLa" id="e1f-eR-97Z"/>
                         <outlet property="noteTextField" destination="yLi-SO-9fO" id="J1L-7p-bjA"/>
                         <outlet property="titleTextField" destination="lYE-dM-ptK" id="bbd-qo-8wW"/>
                     </connections>

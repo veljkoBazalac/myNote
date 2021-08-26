@@ -22,8 +22,6 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadNotes()
-        myTableView.reloadData()
-        
     }
     
     override func viewDidLoad() {
@@ -48,8 +46,7 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath)
         let note = notesArray[indexPath.row]
         cell.textLabel?.text = note.title
-        cell.textLabel?.textAlignment = .center
-        
+
         return cell
         
     }

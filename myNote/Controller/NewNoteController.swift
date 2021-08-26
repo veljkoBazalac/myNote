@@ -14,40 +14,50 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     var notes = [Note]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var noteTextField: UITextView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+//       print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         titleTextField.delegate = self
         noteTextField.delegate = self
-        
-        
+     
     }
     
+    //MARK: - Title Writing
     
-    //MARK: - Title Change
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        doneButton.isHidden = false
+    }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        doneButton.isHidden = true
+       
         if titleTextField.text != "" {
             backButton.setTitle("SAVE", for: .normal)
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        return updatedText.count <= 30
     }
     
-    //MARK: - Note Change
+    //MARK: - Note Writing
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        doneButton.isHidden = false
+    }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        doneButton.isHidden = true
         
         if noteTextField.text != "" {
             backButton.setTitle("SAVE", for: .normal)
@@ -55,7 +65,7 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     }
     
     
-    //MARK: - Add New Note
+    //MARK: - Buttons Manipulation
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         
@@ -96,6 +106,10 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
         }
     }
     
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        noteTextField.resignFirstResponder()
+        titleTextField.resignFirstResponder()
+    }
     
     //MARK: - Note Save
     
@@ -115,5 +129,4 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
             print("Error saving context \(error)")
         }
     }
-    
 }
