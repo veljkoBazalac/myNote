@@ -15,6 +15,7 @@
 		45D4324D26D7B4CE00B25A0E /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D4324C26D7B4CE00B25A0E /* NoteViewController.swift */; };
 		45D4325326D7B53700B25A0E /* myNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45D4325126D7B53700B25A0E /* myNote.xcdatamodeld */; };
 		45D4325526D7B59900B25A0E /* ReadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D4325426D7B59900B25A0E /* ReadViewController.swift */; };
+		45D4325726D7B69000B25A0E /* NewNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D4325626D7B69000B25A0E /* NewNoteController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		45D4324C26D7B4CE00B25A0E /* NoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		45D4325226D7B53700B25A0E /* myNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myNote.xcdatamodel; sourceTree = "<group>"; };
 		45D4325426D7B59900B25A0E /* ReadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadViewController.swift; sourceTree = "<group>"; };
+		45D4325626D7B69000B25A0E /* NewNoteController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewNoteController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			children = (
 				45D4324C26D7B4CE00B25A0E /* NoteViewController.swift */,
 				45D4325426D7B59900B25A0E /* ReadViewController.swift */,
+				45D4325626D7B69000B25A0E /* NewNoteController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D4325726D7B69000B25A0E /* NewNoteController.swift in Sources */,
 				45D4324D26D7B4CE00B25A0E /* NoteViewController.swift in Sources */,
 				45D4322F26D7B24100B25A0E /* AppDelegate.swift in Sources */,
 				45D4323126D7B24100B25A0E /* SceneDelegate.swift in Sources */,
