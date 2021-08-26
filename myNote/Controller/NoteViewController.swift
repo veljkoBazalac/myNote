@@ -14,7 +14,6 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     var notesArray = [Note]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -34,7 +33,7 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
        
     }
     
-    //MARK: - Table View Delegate & SourceData
+    //MARK: - Table View SourceData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -50,25 +49,6 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
         
     }
-    
-    //MARK: - Moving Cells
-    
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
-        let note = notesArray[sourceIndexPath.row]
-        notesArray.remove(at: sourceIndexPath.row)
-        notesArray.insert(note, at: destinationIndexPath.row)
-    }
-    
-    @IBAction func editRows(_ sender: UIBarButtonItem) {
-        myTableView.isEditing = !myTableView.isEditing
-    }
-    
-    
     
     //MARK: - Table View Delegate
     
@@ -97,6 +77,38 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //MARK: - Moving Cells
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let note = notesArray[sourceIndexPath.row]
+        notesArray.remove(at: sourceIndexPath.row)
+        notesArray.insert(note, at: destinationIndexPath.row)
+    }
+    
+    @IBAction func editRows(_ sender: UIBarButtonItem) {
+        myTableView.isEditing = !myTableView.isEditing
+        
+    }
+    
+    //MARK: - Delete Cells on Swipe
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            context.delete(notesArray[indexPath.row])
+            notesArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            saveNotes()
+        }
+    }
     
     //MARK: - Context Manipulation
     
@@ -116,22 +128,6 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
             try context.save()
         } catch {
             print("Error saving context \(error)")
-        }
-    }
-    
-    
-    //MARK: - Delete Cells on Swipe
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            context.delete(notesArray[indexPath.row])
-            notesArray.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            saveNotes()
         }
     }
 }
