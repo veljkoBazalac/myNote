@@ -1,0 +1,6 @@
+module Pods_myNote {
+  umbrella header "Pods-myNote-umbrella.h"
+
+  export *
+  module * { export * }
+}
