@@ -22,11 +22,8 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//       print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
         titleTextField.delegate = self
         noteTextField.delegate = self
-     
     }
     
     //MARK: - Title Writing
@@ -36,7 +33,6 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        doneButton.isHidden = true
        
         if titleTextField.text != "" {
             backButton.setTitle("SAVE", for: .normal)
@@ -44,9 +40,11 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
         return updatedText.count <= 30
     }
     
@@ -57,13 +55,11 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        doneButton.isHidden = true
         
         if noteTextField.text != "" {
             backButton.setTitle("SAVE", for: .normal)
         }
     }
-    
     
     //MARK: - Buttons Manipulation
     
@@ -101,7 +97,6 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
             }
             
         } else {
-            
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -109,6 +104,7 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         noteTextField.resignFirstResponder()
         titleTextField.resignFirstResponder()
+        doneButton.isHidden = true
     }
     
     //MARK: - Note Save
@@ -124,7 +120,6 @@ class NewNoteController: UIViewController, UITextFieldDelegate, UITextViewDelega
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.dismiss(animated: true, completion: nil)
             }
-            
         } catch {
             print("Error saving context \(error)")
         }

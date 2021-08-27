@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 
-
 class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     var notesArray = [Note]()
@@ -25,17 +24,13 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var backButton: UIButton!
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
-        loadNotes()
         navigationController?.isNavigationBarHidden = false
     }
     
@@ -50,7 +45,6 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         titleTextField.layer.borderWidth = 1
         titleTextField.layer.borderColor = #colorLiteral(red: 1, green: 0.4863265157, blue: 0, alpha: 1)
-        
     }
     
     //MARK: - Title Change
@@ -60,7 +54,6 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        doneButton.isHidden = true
         
         if titleTextField.text != cellTitle {
             backButton.setTitle("SAVE", for: .normal)
@@ -68,12 +61,13 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
         return updatedText.count <= 30
     }
-    
     
     //MARK: - Note Change
     
@@ -82,13 +76,11 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        doneButton.isHidden = true
         
         if noteTextField.text != cellBody {
             backButton.setTitle("SAVE", for: .normal)
         }
     }
-    
     
     //MARK: - Buttons Manipulation
     
@@ -96,10 +88,12 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
         
         if sender.currentTitle == "SAVE" {
             
-            let alert = UIAlertController(title: "Are you sure you want to save changes?", message: "Your previous note will be deleted.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Are you sure you want to save changes?", message: "Your previous note will be deleted", preferredStyle: .alert)
+            
             let actionNO = UIAlertAction(title: "NO", style: .default) { action in
                 sender.setTitle("BACK", for: .normal)
             }
+            
             let actionYES = UIAlertAction(title: "YES", style: .default) { [self] action in
                 
                 if titleTextField.text != "", noteTextField.text != "" {
@@ -127,7 +121,6 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
-                
             }
             
             alert.addAction(actionYES)
@@ -143,8 +136,8 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         noteTextField.resignFirstResponder()
         titleTextField.resignFirstResponder()
+        doneButton.isHidden = true
     }
-    
     
     //MARK: - Note Save
     
@@ -155,22 +148,12 @@ class ReadViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
             
             let alert = UIAlertController(title: "Note saved successfully", message: "", preferredStyle: .alert)
             present(alert, animated: true, completion: nil)
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.dismiss(animated: true, completion: nil)
             }
-            
         } catch {
             print("Error saving context \(error)")
         }
     }
-    
-    func loadNotes (with request: NSFetchRequest<Note> = Note.fetchRequest()) {
-        
-        do {
-            notesArray = try context.fetch(request)
-        } catch {
-            print("Error fetching the context, \(error)")
-        }
-    }
-    
 }

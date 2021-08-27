@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 
-
 class NoteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var notesArray = [Note]()
@@ -20,7 +19,7 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        loadNotes()
+            loadNotes()
     }
     
     override func viewDidLoad() {
@@ -29,14 +28,11 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         myTableView.dataSource = self
         myTableView.delegate = self
         searchBar.delegate = self
-        
-       
     }
     
     //MARK: - Table View SourceData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return notesArray.count
     }
     
@@ -45,17 +41,14 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath)
         let note = notesArray[indexPath.row]
         cell.textLabel?.text = note.title
-
-        return cell
         
+        return cell
     }
     
     //MARK: - Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         self.performSegue(withIdentifier: "readNoteSegue", sender: self)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,17 +60,16 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
                 destinationVC.cellTitle = notesArray[indexPath.row].title
                 destinationVC.complitionHandlerTitle = { text in
                     self.notesArray[indexPath.row].title = text
-                   
+                    
                 }
                 destinationVC.complitionHandlerNote = { text in
                     self.notesArray[indexPath.row].body = text
-                    
                 }
             }
         }
     }
     
-    //MARK: - Moving Cells
+    //MARK: - Move Cells
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -92,7 +84,6 @@ class NoteViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func editRows(_ sender: UIBarButtonItem) {
         myTableView.isEditing = !myTableView.isEditing
-        
     }
     
     //MARK: - Delete Cells on Swipe
@@ -138,25 +129,38 @@ extension NoteViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        let request : NSFetchRequest<Note> = Note.fetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
-        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        if searchBar.text?.count != 0 {
+            let request : NSFetchRequest<Note> = Note.fetchRequest()
+            request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+            
+            searchBar.resignFirstResponder()
+            loadNotes(with: request)
+  
+        } else {
+      
+            let alert = UIAlertController(title: "Enter your note title", message: "", preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.dismiss(animated: true, completion: nil)
+            }
+            loadNotes()
+        }
+    }
+   
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        loadNotes(with: request)
-        
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        loadNotes()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchBar.text?.count == 0 {
             loadNotes()
-            
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
         }
     }
 }
-
-
 
